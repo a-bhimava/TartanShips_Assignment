@@ -2,7 +2,7 @@
 
 A modern, glassmorphic-designed package mailing kiosk prototype built with HTML5, CSS3, and vanilla JavaScript. 
 
-View the live prototype: [TartanShips Kiosk](https://a-bhimava.github.io/tartanships-kiosk)
+View the live prototype: [TartanShips Kiosk](https://a-bhimava.github.io/TartanShips_Assignment/)
 
 ## 📋 Features
 
