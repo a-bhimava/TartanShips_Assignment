@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TartanShips - Automated Mailing Kiosk</title>
+    <link rel="stylesheet" href="css/glassmorphic.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="kiosk-container">
+        <!-- Welcome Screen -->
+        <section class="screen active" id="welcome-screen">
+            <div class="glass-card main-card">
+                <div class="brand-header">
+                    <h1>TartanShips</h1>
+                    <p>Automated Package Mailing</p>
+                </div>
+                <div class="welcome-content">
+                    <h2>Welcome to TartanShips Kiosk</h2>
+                    <p>Fast, secure, and convenient package shipping</p>
+                    <button class="primary-btn glass-btn" onclick="nextScreen('package-details')">
+                        Start Shipping
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Package Details Screen -->
+        <section class="screen" id="package-details">
+            <div class="glass-card main-card">
+                <div class="screen-header">
+                    <h2>Package Details</h2>
+                    <p>Please provide your package information</p>
+                </div>
+                <form class="package-form">
+                    <div class="form-group">
+                        <label for="weight">Package Weight</label>
+                        <div class="weight-slider-container">
+                            <div class="weight-display">
+                                <span id="weight-value">3.0</span>
+                                <span class="unit">kg</span>
+                            </div>
+                            <input type="range" id="weight-slider" min="0.1" max="70" step="0.1" value="3.0" class="weight-slider">
+                            <div class="weight-range">
+                                <span>0.1kg</span>
+                                <span>70kg</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination Address</label>
+                        <textarea id="destination" readonly>100 Main St
+ZIP 15213</textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn glass-btn" onclick="previousScreen('welcome-screen')">
+                            Back
+                        </button>
+                        <button type="button" class="primary-btn glass-btn" onclick="nextScreen('service-selection')">
+                            Continue
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Service Selection Screen -->
+        <section class="screen" id="service-selection">
+            <div class="glass-card main-card">
+                <div class="screen-header">
+                    <h2>Select Shipping Service</h2>
+                    <p>Choose your preferred delivery speed</p>
+                </div>
+                <div class="service-options">
+                    <div class="service-card glass-card selected" data-service="overnight">
+                        <div class="service-icon">⚡</div>
+                        <h3>Overnight</h3>
+                        <p class="service-time">Next business day</p>
+                        <p class="service-price">$12.00</p>
+                        <div class="recommended-badge">Recommended</div>
+                    </div>
+                    <div class="service-card glass-card disabled" data-service="2day">
+                        <div class="service-icon">📦</div>
+                        <h3>2-Day</h3>
+                        <p class="service-time">2 business days</p>
+                        <p class="service-price">$8.00</p>
+                    </div>
+                    <div class="service-card glass-card disabled" data-service="ground">
+                        <div class="service-icon">🚛</div>
+                        <h3>Ground</h3>
+                        <p class="service-time">3-5 business days</p>
+                        <p class="service-price">$4.99</p>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn glass-btn" onclick="previousScreen('package-details')">
+                        Back
+                    </button>
+                    <button type="button" class="primary-btn glass-btn" onclick="nextScreen('payment')">
+                        Continue to Payment
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Screen -->
+        <section class="screen" id="payment">
+            <div class="glass-card main-card">
+                <div class="screen-header">
+                    <h2>Payment</h2>
+                    <p>Complete your transaction securely</p>
+                </div>
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-item">
+                        <span>Overnight Shipping (3kg)</span>
+                        <span>$12.00</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span>$12.00</span>
+                    </div>
+                </div>
+                <div class="payment-options">
+                    <div class="payment-method-selector">
+                        <div class="payment-method active" data-method="saved" onclick="selectPaymentMethod('saved')">
+                            <div class="saved-card-preview">
+                                <div class="card-image">
+                                    <div class="credit-card-placeholder">
+                                        <div class="card-chip"></div>
+                                        <div class="card-logo">VISA</div>
+                                    </div>
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-number">•••• •••• •••• 4856</div>
+                                    <div class="card-name">John's Visa Card</div>
+                                </div>
+                                <div class="card-brand">VISA</div>
+                            </div>
+                            <div class="method-label">Saved Card</div>
+                        </div>
+                        
+                        <div class="payment-method" data-method="new" onclick="selectPaymentMethod('new')">
+                            <div class="new-card-preview">
+                                <div class="card-icon">➕</div>
+                                <div class="card-details">
+                                    <div class="card-text">Add New Card</div>
+                                </div>
+                            </div>
+                            <div class="method-label">New Card</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saved Card Confirmation (shown when saved card is selected) -->
+                <div class="saved-card-confirmation" id="saved-card-section">
+                    <div class="saved-card-info">
+                        <div class="card-image">
+                            <div class="credit-card-placeholder">
+                                <div class="card-chip"></div>
+                                <div class="card-logo">VISA</div>
+                            </div>
+                        </div>
+                        <div class="saved-card-details">
+                            <h4>John's Visa Card</h4>
+                            <p>•••• •••• •••• 4856</p>
+                        </div>
+                    </div>
+                    <div class="cvv-input">
+                        <label for="saved-cvv">Enter CVV</label>
+                        <input type="text" id="saved-cvv" placeholder="123" maxlength="3" class="glass-input">
+                    </div>
+                </div>
+
+                <form class="payment-form" id="new-card-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardholder">Cardholder Name</label>
+                        <input type="text" id="cardholder" placeholder="John Doe">
+                    </div>
+                    <div class="security-notice">
+                        <span class="security-icon">🔒</span>
+                        <p>Your payment information is encrypted and secure</p>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn glass-btn" onclick="previousScreen('service-selection')">
+                            Back
+                        </button>
+                        <button type="button" class="primary-btn glass-btn" onclick="processPayment()">
+                            Process Payment
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Pay Now Button (shown for both payment methods) -->
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn glass-btn" onclick="previousScreen('service-selection')">
+                        Back
+                    </button>
+                    <button type="button" class="primary-btn glass-btn" onclick="processPayment()">
+                        Pay Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Confirmation Screen -->
+        <section class="screen" id="confirmation">
+            <div class="glass-card main-card">
+                <div class="confirmation-content">
+                    <div class="success-icon">✅</div>
+                    <h2>Shipment Confirmed!</h2>
+                    <p>Your package has been processed successfully</p>
+                    
+                    <div class="tracking-info">
+                        <h3>Tracking Information</h3>
+                        <div class="tracking-number">
+                            <span>Tracking Number:</span>
+                            <span class="tracking-code">TS240909001</span>
+                        </div>
+                        <div class="estimated-delivery">
+                            <span>Estimated Delivery:</span>
+                            <span>Tomorrow by 10:30 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="receipt-summary">
+                        <h3>Receipt</h3>
+                        <div class="receipt-item">
+                            <span>Service:</span>
+                            <span>Overnight Shipping</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span>Weight:</span>
+                            <span>3kg</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span>Destination:</span>
+                            <span>100 Main St, ZIP 15213</span>
+                        </div>
+                        <div class="receipt-item total">
+                            <span>Total Paid:</span>
+                            <span>$12.00</span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="secondary-btn glass-btn" onclick="printReceipt()">
+                            Print Receipt
+                        </button>
+                        <button class="primary-btn glass-btn" onclick="startNew()">
+                            Ship Another Package
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/validation.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

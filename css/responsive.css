@@ -1,0 +1,265 @@
+/* TartanShips Kiosk Responsive Styles */
+
+/* Mobile Portrait (320px - 479px) */
+@media screen and (max-width: 479px) {
+  .kiosk-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .main-card {
+    padding: var(--spacing-md);
+    min-height: auto;
+  }
+  
+  .brand-header h1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .screen-header h2 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .service-options {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .service-card {
+    padding: var(--spacing-md);
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .payment-method-selector {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+  }
+  
+  .saved-card-preview,
+  .new-card-preview {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-xs);
+  }
+}
+
+/* Mobile Landscape & Small Tablets (480px - 767px) */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .kiosk-container {
+    padding: var(--spacing-md);
+  }
+  
+  .service-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .form-actions button {
+    min-width: 140px;
+  }
+}
+
+/* Tablets (768px - 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .main-card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .service-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .form-row {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* Desktop & Large Screens (1024px+) */
+@media screen and (min-width: 1024px) {
+  .kiosk-container {
+    padding: var(--spacing-xl);
+  }
+  
+  .main-card {
+    max-width: 700px;
+    padding: var(--spacing-xl);
+  }
+  
+  .brand-header {
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .service-options {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+  
+  .service-card {
+    padding: var(--spacing-xl);
+  }
+  
+  .service-card:not(.disabled):hover {
+    transform: translateY(-6px);
+  }
+}
+
+/* Large Desktop & Kiosks (1440px+) */
+@media screen and (min-width: 1440px) {
+  .kiosk-container {
+    padding: var(--spacing-xl) 10%;
+  }
+  
+  .main-card {
+    max-width: 800px;
+    padding: 3rem;
+  }
+  
+  .brand-header h1 {
+    font-size: 3.5rem;
+  }
+  
+  .screen-header h2 {
+    font-size: 2.5rem;
+  }
+  
+  .welcome-content h2 {
+    font-size: 2rem;
+  }
+  
+  .service-card {
+    padding: 2.5rem;
+  }
+  
+  .service-icon {
+    font-size: 5rem;
+  }
+  
+  .success-icon {
+    font-size: 6rem;
+  }
+}
+
+/* Touch-friendly adjustments */
+@media (pointer: coarse) {
+  .glass-btn {
+    min-height: 48px;
+    min-width: 140px;
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    min-height: 48px;
+    padding: var(--spacing-md);
+  }
+  
+  .service-card {
+    padding: var(--spacing-lg) var(--spacing-md);
+    min-height: 200px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --text-glass: #ffffff;
+  }
+  
+  .glass-card {
+    border-width: 2px;
+  }
+  
+  .glass-btn {
+    border-width: 2px;
+    font-weight: 600;
+  }
+  
+  .service-card.selected {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .glass-card:hover,
+  .glass-btn:hover,
+  .service-card:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .glass-card {
+    background: white;
+    backdrop-filter: none;
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+  
+  .screen:not(#confirmation) {
+    display: none;
+  }
+  
+  .form-actions {
+    display: none;
+  }
+}
+
+/* Orientation adjustments */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+  .brand-header {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .screen-header {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .welcome-content {
+    gap: var(--spacing-md);
+  }
+  
+  .service-options {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-sm);
+  }
+  
+  .service-card {
+    padding: var(--spacing-md);
+  }
+  
+  .main-card {
+    min-height: auto;
+  }
+}
+
+/* Dark mode adjustments (if system supports it) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --text-glass: rgba(255, 255, 255, 0.95);
+  }
+}
