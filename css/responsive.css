@@ -2,13 +2,29 @@
 
 /* Mobile Portrait (320px - 479px) */
 @media screen and (max-width: 479px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
   .kiosk-container {
     padding: var(--spacing-sm);
+    align-items: flex-start;
+    padding-top: var(--spacing-md);
+    min-height: 100vh;
+    height: auto;
   }
   
   .main-card {
     padding: var(--spacing-md);
     min-height: auto;
+    max-height: none;
+    overflow-y: visible;
+  }
+  
+  .screen {
+    max-width: 100%;
+    width: 100%;
   }
   
   .brand-header h1 {
@@ -47,12 +63,45 @@
     text-align: center;
     gap: var(--spacing-xs);
   }
+  
+  /* Mobile payment page optimizations */
+  .screen-header {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .order-summary {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+  
+  .payment-options {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .saved-card-confirmation {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+  
+  .payment-method {
+    padding: var(--spacing-sm);
+  }
+  
+  .payment-method-selector {
+    margin-bottom: var(--spacing-md);
+  }
 }
 
 /* Mobile Landscape & Small Tablets (480px - 767px) */
 @media screen and (min-width: 480px) and (max-width: 767px) {
   .kiosk-container {
     padding: var(--spacing-md);
+    align-items: flex-start;
+    padding-top: var(--spacing-lg);
+  }
+  
+  .main-card {
+    min-height: auto;
   }
   
   .service-options {
